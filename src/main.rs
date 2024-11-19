@@ -7,10 +7,13 @@ pub mod parser;
 pub mod config;
 pub mod bspwm;
 pub mod icons;
+pub mod window;
+//pub mod any_wm;
 
 
 use crate::icons::Icons;
 use crate::bspwm::thread_bspwm;
+//use any_wm::thread_any_wm;
 use crate::config::thread_config;
 
 
@@ -37,6 +40,11 @@ fn main() -> xcb::Result<()> {
         Err(e) => println!("error: {:?}", e)
     }});
 
+/*    let bspwm_thread_handle = thread::spawn(move || { match thread_any_wm(icons_arc.clone(), workspaces) {
+        Ok(_) => (),
+        Err(e) => println!("error: {:?}", e),
+    }});
+*/
     match config_thread_handle.join() {
         Ok(_) => (),
         Err(e) => println!("config error: {:?}", e),

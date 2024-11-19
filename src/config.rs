@@ -19,6 +19,9 @@ fn read_config(icons: &mut Icons, path: &str) -> Result<(), std::io::Error> {
         match stmt {
             Stmt::Default(i) => icons.set_default(i),
             Stmt::Empty(i) => icons.set_empty(i),
+            Stmt::FmtBefore(f) => icons.set_before(f),
+            Stmt::Fmt(f) => icons.set_fmt(f),
+            Stmt::FmtAfter(f) => icons.set_after(f),
             Stmt::None => continue,
             _ => icons.set_icon(stmt),
         }
